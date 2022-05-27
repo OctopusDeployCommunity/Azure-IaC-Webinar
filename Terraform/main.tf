@@ -3,27 +3,27 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 2.65"
+      version = "~> 3.0"
     }
   }
-  required_version = ">= 0.14.9"
+  required_version = "= 1.2.1"
 }
 provider "azurerm" {
   features {}
 }
 # Generate a random integer to create a globally unique name
 resource "random_integer" "ri" {
-  min = 10000
+  min = 1
   max = 99999
 }
 # Create the resource group
 resource "azurerm_resource_group" "rg" {
-  name     = "myResourceGroup-${random_integer.ri.result}"
+  name     = "Azure-IaC-Terraform-${random_integer.ri.result}"
   location = "eastus"
 }
 # Create the Linux App Service Plan
 resource "azurerm_app_service_plan" "appserviceplan" {
-  name                = "webapp-asp-${random_integer.ri.result}"
+  name                = "Azure-IaC-Terraform-${random_integer.ri.result}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku {
