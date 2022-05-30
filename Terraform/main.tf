@@ -17,6 +17,7 @@ terraform {
 provider "azurerm" {
   features {}
 }
+
 resource "random_integer" "ri" {
   min = 1
   max = 99999
