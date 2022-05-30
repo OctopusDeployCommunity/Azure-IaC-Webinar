@@ -8,6 +8,14 @@ terraform {
   }
   required_version = "= 1.2.1"
 }
+
+  backend "azurerm" {
+    resource_group_name  = "#{Azure.ResourceGroup.Name}"
+    storage_account_name = "#{Azure.StorageAccount.Name}"
+    container_name       = "#{Azure.StorageContainer.Name}"
+    key                  = "terraform.tfstate"
+  }
+
 provider "azurerm" {
   features {}
 }
